@@ -1,0 +1,26 @@
+1) Seleziona tutti gli ospiti che sono stati identificati con la carta di identità ->
+SELECT `name`, `lastname`, `document_type`
+FROM `ospiti`
+WHERE `document_type` = 'CI';
+
+2)Seleziona tutti gli ospiti che sono stati dopo il 1988 ->
+SELECT `name`, `lastname`, `date_of_birth`
+FROM `ospiti`
+WHERE `date_of_birth` > '1988-12-31';
+
+3)Seleziona tutti gli ospiti che hanno più di 20 anni (al momento dell'esecuzione della query) ->
+SELECT `name`, `lastname`, DATE_FORMAT(FROM_DAYS(DATEDIFF(now(),`date_of_birth`)), '%Y')+0 AS Age
+FROM `ospiti`
+WHERE DATE_FORMAT(FROM_DAYS(DATEDIFF(now(),`date_of_birth`)), '%Y')+0 > 20;
+
+4)Seleziona tutti gli ospiti il cui nome inizia con la D ->
+SELECT `name`, `lastname`
+FROM `ospiti`
+WHERE `name` LIKE 'D%';
+
+5)Calcola il totale degli ordini accepted ->
+SELECT COUNT('status') AS `n_accepted`
+FROM `pagamenti`
+WHERE `status` = 'accepted';
+
+6)Qual è il prezzo massimo pagato? ->
