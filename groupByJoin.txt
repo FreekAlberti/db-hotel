@@ -59,3 +59,16 @@ ON pagamenti.pagante_id = paganti.id
 LEFT JOIN `ospiti`
 ON paganti.ospite_id = ospiti.id
 WHERE MONTH(prenotazioni.created_at) = 05;
+
+4)Fai la somma di tutti i prezzi delle prenotazioni per le stanze del primo piano ->
+SELECT SUM(`price`) AS `somma_prezzi`, `floor`
+FROM `prenotazioni`
+LEFT JOIN `stanze` 
+ON prenotazioni.stanza_id = stanze.id
+LEFT JOIN `pagamenti` 
+ON prenotazioni.id = pagamenti.prenotazione_id
+WHERE `floor` = 1;
+
+5)Prendi i dati di fatturazione per la prenotazione con id=7 ->
+
+
