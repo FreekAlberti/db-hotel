@@ -25,7 +25,8 @@ GROUP BY HOUR(`created_at`);
 SELECT COUNT(`prenotazione_id`) AS `numero_prenotazioni`, `ospite_id`
 FROM `prenotazioni_has_ospiti`
 GROUP BY `ospite_id`  
-ORDER BY `numero_prenotazioni`  DESC;
+ORDER BY `numero_prenotazioni`  DESC
+LIMIT 1;
 
 Join
 
@@ -35,7 +36,7 @@ FROM `prenotazioni_has_ospiti`
 INNER JOIN `ospiti` 
 ON prenotazioni_has_ospiti.ospite_id = ospiti.id 
 GROUP BY `ospite_id` 
-ORDER BY `numero_prenotazioni` DESC;
+HAVING COUNT(`prenotazione_id`) > 2;
 
 2)Stampare tutti gli ospiti per ogni prenotazione ->
 SELECT `ospite_id`, `name`, `lastname`, `prenotazione_id`
